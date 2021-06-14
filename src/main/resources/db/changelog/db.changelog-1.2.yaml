@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:  
+      id:  5  
+      author:  Max  
+      changes:  
+      -  insert:  
+          columns:  
+          -  column:
+              name: first_name
+              value: Имя
+          -  column:
+              name: last_name
+              value: Фамилия
+          tableName:  clients
+  - changeSet:  
+      id:  6 
+      author:  Max  
+      changes:  
+      -  insert:  
+          columns:  
+          -  column:
+              name: account_num
+              value: 123456789
+          -  column:
+              name: balance
+              value: 5000
+          -  column:
+              name: client_fk
+              value: 1
+          tableName:  accounts
+  - changeSet:  
+      id:  7
+      author:  Max  
+      changes:  
+      -  insert:  
+          columns:  
+          -  column:
+              name: account_num
+              value: 987654321
+          -  column:
+              name: balance
+              value: 10000
+          -  column:
+              name: client_fk
+              value: 1
+          tableName:  accounts
