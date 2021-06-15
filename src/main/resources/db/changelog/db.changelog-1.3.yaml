@@ -34,4 +34,15 @@ databaseChangeLog:
       id: add-foreing-keys-payments_accounts
       author: Max
       changes:
-        -
+        - addForeignKeyConstraint:
+            baseColumnNames: source_acc_id
+            baseTableName: payments
+            constraintName: fk_source_acc_id_accounts
+            referencedColumnNames: account_id
+            referencedTableName: accounts
+        - addForeignKeyConstraint:
+            baseColumnNames: dest_acc_id
+            baseTableName: payments
+            constraintName: fk_dest_acc_id_accounts
+            referencedColumnNames: account_id
+            referencedTableName: accounts
