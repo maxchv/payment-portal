@@ -1,49 +1,49 @@
 databaseChangeLog:
-  - changeSet:  
-      id:  2  
-      author:  Max  
-      changes:  
-      -  createTable:  
-          columns:  
-          -  column:
-              name: account_id
-              type: bigint
-              constraints:
-                primaryKey: true
-              autoIncrement: true
-          -  column:  
-              name:  account_num  
-              type:  char(9)
-              constraints:
-                nullable: false
-                unique: true
-          -  column:  
-              name:  account_type  
-              type:  varchar(255)
-              constraints:
-                nullable: false
-              defaultValue: card/simple
-          -  column:
-              name:   balance
-              type:   money
-          tableName:  accounts
   - changeSet:
-      id: 3
+      id: create-table-accounts
       author: Max
       changes:
-      - addColumn:
-          columns:
-          - column:
-              name: client_fk
-              type: bigint
-          tableName: accounts
-  - changeSet:  
-      id:  4  
-      author:  Max  
-      changes:  
-      -  addForeignKeyConstraint:  
-          baseColumnNames:  client_fk  
-          baseTableName:  accounts   
-          constraintName:  fk_accounts_clients  
-          referencedColumnNames:  client_id  
-          referencedTableName:  clients 
+        - createTable:
+            columns:
+              - column:
+                  name: account_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                  autoIncrement: true
+              - column:
+                  name: account_num
+                  type: char(9)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: account_type
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                  defaultValue: card/simple
+              - column:
+                  name: balance
+                  type: money
+            tableName: accounts
+  - changeSet:
+      id: add-column_client_fk
+      author: Max
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: client_fk
+                  type: bigint
+            tableName: accounts
+  - changeSet:
+      id: add-foreing-key-fk_accounts_clients
+      author: Max
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: client_fk
+            baseTableName: accounts
+            constraintName: fk_accounts_clients
+            referencedColumnNames: client_id
+            referencedTableName: clients

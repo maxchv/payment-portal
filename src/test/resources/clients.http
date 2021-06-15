@@ -1,0 +1,29 @@
+POST localhost:8080/api/v1/clients
+Content-Type: application/json
+
+{
+  "first_name": "Имя",
+  "last_name": "Фамилия",
+  "accounts": [
+    {
+      "account_num": "123456789",
+      "account_type": "card/simple",
+      "balance": 5000.00
+    },
+    {
+      "account_num": "987654321",
+      "account_type": "card/simple",
+      "balance": 10000.00
+    }
+  ]
+}
+
+###
+GET localhost:8080/api/v1/clients?client_id=1
+Accept: application/json
+
+###
+GET localhost:8080/api/v1/clients?client_id=1
+Accept: application/xml
+
+

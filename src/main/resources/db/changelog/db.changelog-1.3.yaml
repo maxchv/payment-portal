@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-payments
+      author: Max
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: payment_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                  autoIncrement: true
+              - column:
+                  name: source_acc_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dest_acc_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amount
+                  type: money
+                  constraints:
+                    nullable: false
+              - column:
+                  name: reason
+                  type: varchar(255)
+            tableName: payments
+  - changeSet:
+      id: add-foreing-keys-payments_accounts
+      author: Max
+      changes:
+        -
