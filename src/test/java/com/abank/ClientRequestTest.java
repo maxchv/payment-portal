@@ -1,8 +1,8 @@
 package com.abank;
 
-import com.abank.data.entity.Account;
-import com.abank.data.entity.Client;
-import com.abank.data.repository.ClientRepository;
+import com.abank.client.account.Account;
+import com.abank.client.Client;
+import com.abank.client.repository.ClientRepository;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;

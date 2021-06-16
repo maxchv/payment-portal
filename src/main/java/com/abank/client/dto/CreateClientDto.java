@@ -1,4 +1,4 @@
-package com.abank.viewmodel;
+package com.abank.client.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class CreateClientView {
+public class CreateClientDto {
     @JsonProperty("client_id")
     private Long clientId;
 }

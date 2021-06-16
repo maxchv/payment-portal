@@ -1,6 +1,6 @@
-package com.abank.data.repository;
+package com.abank.client.repository;
 
-import com.abank.data.entity.Client;
+import com.abank.client.Client;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

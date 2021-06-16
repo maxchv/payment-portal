@@ -1,18 +1,15 @@
-package com.abank.data.entity;
+package com.abank.client;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
 
+import com.abank.client.account.Account;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 @Table(name = "clients")
 @Entity

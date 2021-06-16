@@ -1,13 +1,12 @@
-package com.abank.data.entity;
+package com.abank.client.account;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.abank.client.Client;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
 
 @Data
