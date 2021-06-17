@@ -42,8 +42,7 @@ public class PaymentServiceImpl implements PaymentService {
         payment.setSourceAccount(source);
         payment.setDestinationAccount(destination);
         payment.setAmount(paymentDto.getAmount());
-        payment.setReason(payment.getReason());
-        paymentRepository.save(payment);
+        payment.setReason(paymentDto.getReason());
 
         BigDecimal sourceBalance = source.getBalance();
         if (paymentDto.getAmount().compareTo(sourceBalance) <= 0) {
@@ -52,7 +51,11 @@ public class PaymentServiceImpl implements PaymentService {
             destination.setBalance(destinationBalance.add(payment.getAmount()));
             accountRepository.save(source);
             accountRepository.save(destination);
+            payment.setStatus(PaymentStatus.ok);
+            paymentRepository.save(payment);
         } else {
+            payment.setStatus(PaymentStatus.error);
+            paymentRepository.save(payment);
             throw new NotEnoughMoney(payment.getId());
         }
 

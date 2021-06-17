@@ -29,4 +29,8 @@ public class Payment {
 
     @Column(name = "reason")
     private String reason;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus status;
 }

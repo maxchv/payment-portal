@@ -29,6 +29,10 @@ databaseChangeLog:
               - column:
                   name: reason
                   type: varchar(255)
+              - column:
+                  name: status
+                  type: varchar(10)
+                  defaultValue: ok
             tableName: payments
   - changeSet:
       id: add-foreing-keys-payments_accounts
