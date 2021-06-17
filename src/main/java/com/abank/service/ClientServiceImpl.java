@@ -5,7 +5,6 @@ import com.abank.model.Account;
 import com.abank.model.Client;
 import com.abank.repository.ClientRepository;
 import lombok.SneakyThrows;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
