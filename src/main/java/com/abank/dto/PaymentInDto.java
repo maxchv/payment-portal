@@ -2,10 +2,12 @@ package com.abank.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Data
+@NoArgsConstructor
 public class PaymentInDto {
     @JsonProperty("source_acc_id")
     private Long sourceAccount;

@@ -1,6 +1,9 @@
 package com.abank.service;
 
 public class NotEnoughMoney extends Exception {
+
+    private Long paymentId;
+
     public NotEnoughMoney() {
     }
 
@@ -18,5 +21,13 @@ public class NotEnoughMoney extends Exception {
 
     public NotEnoughMoney(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
+    }
+
+    public NotEnoughMoney(Long id) {
+        paymentId = id;
+    }
+
+    public Long getPaymentId() {
+        return paymentId;
     }
 }
