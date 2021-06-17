@@ -1,11 +1,12 @@
 package com.abank.model;
 
-import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -21,10 +22,14 @@ public class Client {
     private Long id;
 
     @JsonProperty("first_name")
+    @NotNull
+    @NotBlank
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
     @JsonProperty("last_name")
+    @NotNull
+    @NotBlank
     @Column(name = "last_name", nullable = false)
     private String lastName;
 

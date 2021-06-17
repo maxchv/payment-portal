@@ -26,4 +26,32 @@ Accept: application/json
 GET localhost:8080/api/v1/clients?client_id=1
 Accept: application/xml
 
+###
+POST localhost:8080/api/v1/payment
+Content-Type: application/json
 
+{
+  "source_acc_id": 1,
+  "dest_acc_id": 1,
+  "amount": 100.00,
+  "reason": "назначение платежа"
+}
+
+###
+POST localhost:8080/api/v1/payments
+Content-Type: application/json
+
+[
+  {
+    "source_acc_id": 654,
+    "dest_acc_id": 655,
+    "amount": 100.00,
+    "reason": "назначение платежа"
+  },
+  {
+    "source_acc_id": 655,
+    "dest_acc_id": 654,
+    "amount": 1000.00,
+    "reason": "назначение платежа"
+  }
+]

@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class CreateClientDto {
+public class ClientOutDto {
     @JsonProperty("client_id")
     private Long clientId;
 }

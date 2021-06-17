@@ -1,8 +1,8 @@
 package com.abank.rest;
 
+import com.abank.dto.ClientOutDto;
 import com.abank.model.Account;
 import com.abank.model.Client;
-import com.abank.dto.CreateClientDto;
 import com.abank.service.ClientNotFoundException;
 import com.abank.service.ClientService;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/v1/clients")
@@ -36,7 +35,7 @@ public class ClientController {
     }
 
     @PostMapping(value = "", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<CreateClientDto> createClient(@Validated @RequestBody Client client, BindingResult bindingResult) {
+    public ResponseEntity<ClientOutDto> createClient(@Validated @RequestBody Client client, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.internalServerError().build(); // FIXME: correct response
         }
