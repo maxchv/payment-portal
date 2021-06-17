@@ -1,6 +1,6 @@
-package com.abank.client.account;
+package com.abank.model;
 
-import com.abank.client.Client;
+import com.abank.model.Client;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

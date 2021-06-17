@@ -1,9 +1,10 @@
-package com.abank.client.api;
+package com.abank.rest;
 
-import com.abank.client.account.Account;
-import com.abank.client.Client;
-import com.abank.client.repository.ClientRepository;
-import com.abank.client.dto.CreateClientDto;
+import com.abank.model.Account;
+import com.abank.model.Client;
+import com.abank.dto.CreateClientDto;
+import com.abank.service.ClientNotFoundException;
+import com.abank.service.ClientService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,19 +18,21 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path = "/api/v1/clients")
 public class ClientController {
-    private final ClientRepository clientRepository;
+    private final ClientService clientService;
 
-    public ClientController(ClientRepository clientRepository) {
-        this.clientRepository = clientRepository;
+    public ClientController(ClientService clientService) {
+        this.clientService = clientService;
     }
 
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<Account>> getClientById(@RequestParam(name = "client_id") Long clientId) {
-        Optional<Client> optionalClient = clientRepository.findById(clientId);
-        if (optionalClient.isEmpty()) {
+        List<Account> accounts;
+        try {
+            accounts = clientService.findAccountByClientId(clientId);
+        } catch (ClientNotFoundException ex) {
             return ResponseEntity.internalServerError().build();
         }
-        return ResponseEntity.ok(optionalClient.orElseThrow().getAccounts());
+        return ResponseEntity.ok(accounts);
     }
 
     @PostMapping(value = "", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
@@ -37,10 +40,7 @@ public class ClientController {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.internalServerError().build(); // FIXME: correct response
         }
-        for (Account account : client.getAccounts()) {
-            account.setClient(client);
-        }
-        clientRepository.save(client);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new CreateClientDto(client.getId()));
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(clientService.createClient(client));
     }
 }

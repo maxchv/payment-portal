@@ -1,8 +1,8 @@
 package com.abank;
 
-import com.abank.client.account.Account;
-import com.abank.client.Client;
-import com.abank.client.repository.ClientRepository;
+import com.abank.model.Account;
+import com.abank.model.Client;
+import com.abank.repository.jpa.JpaClientRepository;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -28,16 +28,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-@ActiveProfiles("test")
+@ActiveProfiles(profiles = {"test", "jpa"})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ClientRequestTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-
     @MockBean
-    private ClientRepository mockClientRepository;
+    private JpaClientRepository mockJpaClientRepository;
 
     @SneakyThrows
     @Test
@@ -60,7 +59,7 @@ class ClientRequestTest {
         client.addAccount(account1);
         client.addAccount(account2);
 
-        Mockito.when(mockClientRepository.findById(1L))
+        Mockito.when(mockJpaClientRepository.findById(1L))
                 .thenReturn(Optional.of(client));
 
         mockMvc

@@ -1,9 +1,8 @@
 package com.abank;
 
-import com.abank.client.account.Account;
-import com.abank.client.Client;
-import com.abank.client.repository.ClientRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.abank.model.Account;
+import com.abank.model.Client;
+import com.abank.repository.ClientRepository;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -24,22 +23,18 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-@ActiveProfiles("test")
+@ActiveProfiles(profiles = {"test", "jpa"})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ClientCreateTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Autowired
     private ClientRepository clientRepository;
