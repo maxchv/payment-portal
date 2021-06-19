@@ -27,6 +27,10 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: timestamp
+                  type: timestamp
+                  defaultValue: CURRENT_TIMESTAMP
+              - column:
                   name: reason
                   type: varchar(255)
               - column:

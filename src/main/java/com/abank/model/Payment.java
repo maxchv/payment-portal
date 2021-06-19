@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -29,6 +30,9 @@ public class Payment {
 
     @Column(name = "reason")
     private String reason;
+
+    @Column(name = "timestamp")
+    private LocalDateTime timestamp = LocalDateTime.now();
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)

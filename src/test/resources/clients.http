@@ -58,3 +58,12 @@ Content-Type: application/json
 ]
 
 ### 3. Получение информации по проведенным/забракованным платежам.
+POST localhost:8080/api/v1/payments/info
+Content-Type: application/json
+
+{
+  "payer_id": 123,
+  "recipient_id": 124,
+  "source_acc_id": 456,
+  "dest_acc_id": 457
+}
