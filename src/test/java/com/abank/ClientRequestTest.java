@@ -4,10 +4,7 @@ import com.abank.model.Account;
 import com.abank.model.Client;
 import com.abank.repository.jpa.JpaClientRepository;
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,14 +35,12 @@ class ClientRequestTest {
     @MockBean
     private JpaClientRepository mockJpaClientRepository;
 
-    @SneakyThrows
-    @Test
-    @Order(2)
-    void findClient() {
+    @BeforeEach
+    void init() {
         Client client = new Client();
         client.setId(1L);
         client.setFirstName("Имя");
-        client.setFirstName("Фамилия");
+        client.setLastName("Фамилия");
         Account account1 = new Account();
         account1.setId(1L);
         account1.setAccountNum("123456789");
@@ -61,7 +56,12 @@ class ClientRequestTest {
 
         Mockito.when(mockJpaClientRepository.findById(1L))
                 .thenReturn(Optional.of(client));
+    }
 
+    @SneakyThrows
+    @Test
+    @Order(1)
+    void findClient() {
         mockMvc
                 .perform(
                         get("/api/v1/clients")
