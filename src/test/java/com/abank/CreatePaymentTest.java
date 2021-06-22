@@ -127,8 +127,19 @@ public class CreatePaymentTest {
 
     @Test
     @Order(3)
-    void createOneFailPaymentResponseTest() {
-        fail("Not implemented yet"); // FIXME: реализовать тест
+    void createOneFailPaymentResponseTest() throws Exception {
+        var endpoint = "/api/v1/payment";
+        var request = "{\n" +
+                "  \"source_acc_id\": 1,\n" +
+                "  \"dest_acc_id\": 2,\n" +
+                "  \"amount\": 100000.00,\n" +
+                "  \"reason\": \"назначение платежа\"\n" +
+                "}";
+        mockMvc
+                .perform(post(endpoint)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(request))
+                .andExpect(status().isInternalServerError());
     }
 
     @Test

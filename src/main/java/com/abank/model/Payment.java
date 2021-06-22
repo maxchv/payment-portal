@@ -32,9 +32,14 @@ public class Payment {
     private String reason;
 
     @Column(name = "timestamp")
-    private LocalDateTime timestamp = LocalDateTime.now();
+    private LocalDateTime timestamp;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private PaymentStatus status;
+
+    @PrePersist
+    protected void onCreate() {
+        timestamp = LocalDateTime.now();
+    }
 }

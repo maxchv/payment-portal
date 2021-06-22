@@ -29,7 +29,7 @@ databaseChangeLog:
               - column:
                   name: timestamp
                   type: timestamp
-                  defaultValue: CURRENT_TIMESTAMP
+                  defaultValue: TIMESTAMP
               - column:
                   name: reason
                   type: varchar(255)
