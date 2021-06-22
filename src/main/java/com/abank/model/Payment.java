@@ -1,6 +1,7 @@
 package com.abank.model;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
@@ -31,15 +32,11 @@ public class Payment {
     @Column(name = "reason")
     private String reason;
 
+    @CreationTimestamp
     @Column(name = "timestamp")
     private LocalDateTime timestamp;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private PaymentStatus status;
-
-    @PrePersist
-    protected void onCreate() {
-        timestamp = LocalDateTime.now();
-    }
 }
