@@ -1,6 +1,6 @@
 package com.abank.service;
 
-import com.abank.dto.ClientOutDto;
+import com.abank.dto.response.ClientResponseDto;
 import com.abank.model.Account;
 import com.abank.model.Client;
 import com.abank.repository.ClientRepository;
@@ -30,11 +30,11 @@ public class ClientServiceImpl implements ClientService{
     }
 
     @Override
-    public ClientOutDto createClient(Client client) {
+    public ClientResponseDto createClient(Client client) {
         for (Account account : client.getAccounts()) {
             account.setClient(client);
         }
         clientRepository.save(client);
-        return new ClientOutDto(client.getId());
+        return new ClientResponseDto(client.getId());
     }
 }

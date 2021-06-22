@@ -1,4 +1,4 @@
-package com.abank.dto;
+package com.abank.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PaymentOutDto {
+public class PaymentResponseDto {
     @JsonProperty("payment_id")
     private Long paymentId;
 }

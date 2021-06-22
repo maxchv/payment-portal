@@ -1,4 +1,4 @@
-package com.abank.dto;
+package com.abank.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

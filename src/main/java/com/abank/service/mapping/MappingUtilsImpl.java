@@ -1,10 +1,10 @@
 package com.abank.service.mapping;
 
-import com.abank.dto.PaymentResponseInfoDto;
+import com.abank.dto.response.PaymentResponseInfoDto;
 import com.abank.model.Payment;
 import org.springframework.stereotype.Service;
 
-import static com.abank.dto.PaymentResponseInfoDto.ClientFullName;
+import static com.abank.dto.response.PaymentResponseInfoDto.ClientFullName;
 
 @Service
 public class MappingUtilsImpl implements MappingUtils {

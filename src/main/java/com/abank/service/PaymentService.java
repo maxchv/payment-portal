@@ -1,13 +1,17 @@
 package com.abank.service;
 
-import com.abank.dto.*;
+import com.abank.dto.request.PaymentRequestDto;
+import com.abank.dto.request.PaymentRequestInfoDto;
+import com.abank.dto.response.PaymentResponseDto;
+import com.abank.dto.response.PaymentResponseInfoDto;
+import com.abank.dto.response.PaymentResponseWithStatusDto;
 
 import java.util.List;
 
 public interface PaymentService {
-    PaymentOutDto createPayment(PaymentInDto payment) throws AccountNotFoundException, NotEnoughMoney;
+    PaymentResponseDto createPayment(PaymentRequestDto payment) throws AccountNotFoundException, NotEnoughMoney;
 
-    List<PaymentOutWithStatusDto> createPayments(PaymentInDto[] payments);
+    List<PaymentResponseWithStatusDto> createPayments(PaymentRequestDto[] payments);
 
     List<PaymentResponseInfoDto> getPaymentInfo(PaymentRequestInfoDto paymentRequest);
 }

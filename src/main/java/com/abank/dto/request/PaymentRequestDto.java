@@ -1,4 +1,4 @@
-package com.abank.dto;
+package com.abank.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
-public class PaymentInDto {
+public class PaymentRequestDto {
     @JsonProperty("source_acc_id")
     private Long sourceAccount;
 

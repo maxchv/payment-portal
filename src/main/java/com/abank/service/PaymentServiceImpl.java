@@ -1,6 +1,10 @@
 package com.abank.service;
 
-import com.abank.dto.*;
+import com.abank.dto.request.PaymentRequestDto;
+import com.abank.dto.request.PaymentRequestInfoDto;
+import com.abank.dto.response.PaymentResponseDto;
+import com.abank.dto.response.PaymentResponseInfoDto;
+import com.abank.dto.response.PaymentResponseWithStatusDto;
 import com.abank.model.Account;
 import com.abank.model.Client;
 import com.abank.model.Payment;
@@ -34,7 +38,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     @Transactional
-    public PaymentOutDto createPayment(PaymentInDto paymentDto) throws AccountNotFoundException, NotEnoughMoney {
+    public PaymentResponseDto createPayment(PaymentRequestDto paymentDto) throws AccountNotFoundException, NotEnoughMoney {
         Optional<Account> sourceAccount = accountRepository.findById(paymentDto.getSourceAccount());
         Optional<Account> destinationAccount = accountRepository.findById(paymentDto.getDestinationAccount());
         if (sourceAccount.isEmpty() || destinationAccount.isEmpty()) {
@@ -64,18 +68,18 @@ public class PaymentServiceImpl implements PaymentService {
             throw new NotEnoughMoney(payment.getId());
         }
 
-        return new PaymentOutDto(payment.getId());
+        return new PaymentResponseDto(payment.getId());
     }
 
     @Override
-    public List<PaymentOutWithStatusDto> createPayments(PaymentInDto[] payments) {
-        List<PaymentOutWithStatusDto> response = new ArrayList<>();
-        for (PaymentInDto payment : payments) {
+    public List<PaymentResponseWithStatusDto> createPayments(PaymentRequestDto[] payments) {
+        List<PaymentResponseWithStatusDto> response = new ArrayList<>();
+        for (PaymentRequestDto payment : payments) {
             try {
                 var resp = createPayment(payment);
-                response.add(new PaymentOutWithStatusDto(resp));
+                response.add(new PaymentResponseWithStatusDto(resp));
             } catch (NotEnoughMoney ex) {
-                response.add(new PaymentOutWithStatusDto(ex.getPaymentId(), PaymentStatus.error));
+                response.add(new PaymentResponseWithStatusDto(ex.getPaymentId(), PaymentStatus.error));
             } catch (AccountNotFoundException e) {
                 e.printStackTrace();
             }
