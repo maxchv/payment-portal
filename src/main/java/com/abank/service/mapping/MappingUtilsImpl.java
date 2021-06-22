@@ -4,7 +4,7 @@ import com.abank.dto.PaymentResponseInfoDto;
 import com.abank.model.Payment;
 import org.springframework.stereotype.Service;
 
-import static com.abank.dto.PaymentResponseInfoDto.Client;
+import static com.abank.dto.PaymentResponseInfoDto.ClientFullName;
 
 @Service
 public class MappingUtilsImpl implements MappingUtils {
@@ -19,8 +19,8 @@ public class MappingUtilsImpl implements MappingUtils {
                 .sourceAccountNumber(payment.getSourceAccount().getAccountNum())
                 .destinationAccountNumber(payment.getDestinationAccount().getAccountNum())
                 .amount(payment.getAmount())
-                .payer(new Client(payer.getFirstName(), payer.getLastName()))
-                .recipient(new Client(recipient.getFirstName(), recipient.getLastName()))
+                .payer(new ClientFullName(payer.getFirstName(), payer.getLastName()))
+                .recipient(new ClientFullName(recipient.getFirstName(), recipient.getLastName()))
                 .build();
     }
 }

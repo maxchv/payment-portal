@@ -28,7 +28,7 @@ public class PaymentResponseInfoDto {
 
     @AllArgsConstructor
     @Data
-    public static class Client {
+    public static class ClientFullName {
         @JsonProperty("first_name")
         private String firstName;
 
@@ -37,8 +37,8 @@ public class PaymentResponseInfoDto {
     }
 
     @JsonProperty("payer")
-    private Client payer;
+    private ClientFullName payer;
 
     @JsonProperty("recipient")
-    private Client recipient;
+    private ClientFullName recipient;
 }
