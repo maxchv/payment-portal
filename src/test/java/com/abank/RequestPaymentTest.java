@@ -4,7 +4,6 @@ import com.abank.model.Account;
 import com.abank.model.Client;
 import com.abank.model.Payment;
 import com.abank.model.PaymentStatus;
-import com.abank.repository.AccountRepository;
 import com.abank.repository.ClientRepository;
 import com.abank.repository.PaymentRepository;
 import lombok.SneakyThrows;
@@ -29,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-@ActiveProfiles(profiles = {"test", "jpa"})
+@ActiveProfiles(profiles = {"test", "springdata"})
 public class RequestPaymentTest {
 
     @Autowired
@@ -40,9 +39,6 @@ public class RequestPaymentTest {
 
     @Autowired
     private ClientRepository clientRepository;
-
-    @Autowired
-    private AccountRepository accountRepository;
 
     @BeforeEach
     void init() {

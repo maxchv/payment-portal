@@ -1,4 +1,4 @@
-package com.abank.repository.jpa;
+package com.abank.repository.springdata;
 
 import com.abank.model.Payment;
 import com.abank.repository.PaymentRepository;
@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-@Profile("jpa")
-public interface JpaPaymentRepository extends JpaRepository<Payment, Long>, PaymentRepository {
+@Profile("springdata")
+public interface SpringDataPaymentRepository extends JpaRepository<Payment, Long>, PaymentRepository {
 
     default List<Payment> findAllByPayment(Payment example) {
         return findAll(Example.of(example));

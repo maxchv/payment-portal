@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-@ActiveProfiles(profiles = {"test", "jpa"})
+@ActiveProfiles(profiles = {"test", "springdata"})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ClientCreateTest {
 
