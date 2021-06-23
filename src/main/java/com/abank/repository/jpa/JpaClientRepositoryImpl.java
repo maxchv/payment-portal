@@ -1,4 +1,4 @@
-package com.abank.repository.jdbc;
+package com.abank.repository.jpa;
 
 import com.abank.model.Client;
 import com.abank.repository.ClientRepository;
@@ -10,13 +10,13 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Profile("jdbc")
 @Repository
-public class JdbcClientRepositoryImpl implements ClientRepository {
+@Profile("jpa")
+public class JpaClientRepositoryImpl implements ClientRepository {
 
     private final EntityManager entityManager;
 
-    public JdbcClientRepositoryImpl(EntityManager entityManager) {
+    public JpaClientRepositoryImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

@@ -1,4 +1,4 @@
-package com.abank;
+package com.abank.base;
 
 import com.abank.model.Account;
 import com.abank.model.Client;
@@ -8,15 +8,11 @@ import com.abank.repository.AccountRepository;
 import com.abank.repository.ClientRepository;
 import com.abank.repository.PaymentRepository;
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,13 +24,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@AutoConfigureMockMvc
-@ActiveProfiles({"test", "springdata"})
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class CreatePaymentTest {
+
+public abstract class AbstractCreatePaymentTest {
 
     @Autowired
     private MockMvc mockMvc;

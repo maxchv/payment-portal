@@ -1,18 +1,15 @@
-package com.abank;
+package com.abank.base;
 
 import com.abank.model.Account;
 import com.abank.model.Client;
 import com.abank.repository.ClientRepository;
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
@@ -20,13 +17,7 @@ import java.math.BigDecimal;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@AutoConfigureMockMvc
-@ActiveProfiles(profiles = {"test", "springdata"})
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
-class ClientRequestTest {
+public abstract class AbstractClientRequestTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -56,6 +47,7 @@ class ClientRequestTest {
     @SneakyThrows
     @Test
     @Order(1)
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     void findClient() {
         mockMvc
                 .perform(
