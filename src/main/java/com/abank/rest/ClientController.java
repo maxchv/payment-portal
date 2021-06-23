@@ -1,6 +1,6 @@
 package com.abank.rest;
 
-import com.abank.dto.response.ClientResponseDto;
+import com.abank.dto.response.ClientResponse;
 import com.abank.model.Account;
 import com.abank.model.Client;
 import com.abank.service.ClientNotFoundException;
@@ -35,7 +35,7 @@ public class ClientController {
     }
 
     @PostMapping(value = "", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<ClientResponseDto> createClient(@Validated @RequestBody Client client, BindingResult bindingResult) {
+    public ResponseEntity<ClientResponse> createClient(@Validated @RequestBody Client client, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.internalServerError().build(); // FIXME: correct response
         }

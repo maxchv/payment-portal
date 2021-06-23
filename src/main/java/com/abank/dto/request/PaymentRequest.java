@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
-public class PaymentRequestDto {
+public class PaymentRequest {
     @JsonProperty("source_acc_id")
     @Positive
     private Long sourceAccount;

@@ -8,7 +8,7 @@ import javax.validation.constraints.Positive;
 
 @Data
 @AllArgsConstructor
-public class ClientResponseDto {
+public class ClientResponse {
     @JsonProperty("client_id")
     @Positive
     private Long clientId;

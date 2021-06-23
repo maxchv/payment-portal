@@ -6,7 +6,7 @@ import lombok.Data;
 import javax.validation.constraints.Positive;
 
 @Data
-public class PaymentRequestInfoDto {
+public class PaymentRequestInfo {
     @JsonProperty("payer_id")
     @Positive
     private Long payerId;

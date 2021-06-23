@@ -10,7 +10,7 @@ import javax.validation.constraints.Positive;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PaymentResponseDto {
+public class PaymentResponse {
     @JsonProperty("payment_id")
     @Positive
     private Long paymentId;

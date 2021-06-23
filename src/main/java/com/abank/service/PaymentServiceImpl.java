@@ -1,10 +1,10 @@
 package com.abank.service;
 
-import com.abank.dto.request.PaymentRequestDto;
-import com.abank.dto.request.PaymentRequestInfoDto;
-import com.abank.dto.response.PaymentResponseDto;
-import com.abank.dto.response.PaymentResponseInfoDto;
-import com.abank.dto.response.PaymentResponseWithStatusDto;
+import com.abank.dto.request.PaymentRequest;
+import com.abank.dto.request.PaymentRequestInfo;
+import com.abank.dto.response.PaymentResponse;
+import com.abank.dto.response.PaymentResponseInfo;
+import com.abank.dto.response.PaymentResponseWithStatus;
 import com.abank.model.Account;
 import com.abank.model.Client;
 import com.abank.model.Payment;
@@ -38,7 +38,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     @Transactional
-    public PaymentResponseDto createPayment(PaymentRequestDto paymentDto) throws AccountNotFoundException, NotEnoughMoney {
+    public PaymentResponse createPayment(PaymentRequest paymentDto) throws AccountNotFoundException, NotEnoughMoney {
         Optional<Account> sourceAccount = accountRepository.findById(paymentDto.getSourceAccount());
         Optional<Account> destinationAccount = accountRepository.findById(paymentDto.getDestinationAccount());
         if (sourceAccount.isEmpty() || destinationAccount.isEmpty()) {
@@ -68,18 +68,18 @@ public class PaymentServiceImpl implements PaymentService {
             throw new NotEnoughMoney(payment.getId());
         }
 
-        return new PaymentResponseDto(payment.getId());
+        return new PaymentResponse(payment.getId());
     }
 
     @Override
-    public List<PaymentResponseWithStatusDto> createPayments(PaymentRequestDto[] payments) {
-        List<PaymentResponseWithStatusDto> response = new ArrayList<>();
-        for (PaymentRequestDto payment : payments) {
+    public List<PaymentResponseWithStatus> createPayments(PaymentRequest[] payments) {
+        List<PaymentResponseWithStatus> response = new ArrayList<>();
+        for (PaymentRequest payment : payments) {
             try {
                 var resp = createPayment(payment);
-                response.add(new PaymentResponseWithStatusDto(resp));
+                response.add(new PaymentResponseWithStatus(resp));
             } catch (NotEnoughMoney ex) {
-                response.add(new PaymentResponseWithStatusDto(ex.getPaymentId(), PaymentStatus.error));
+                response.add(new PaymentResponseWithStatus(ex.getPaymentId(), PaymentStatus.error));
             } catch (AccountNotFoundException e) {
                 e.printStackTrace();
             }
@@ -88,7 +88,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public List<PaymentResponseInfoDto> getPaymentInfo(PaymentRequestInfoDto paymentRequest) {
+    public List<PaymentResponseInfo> getPaymentInfo(PaymentRequestInfo paymentRequest) {
         var payment = new Payment();
         Account sourceAccount = new Account();
         Client payer = new Client();

@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder
-public class PaymentResponseInfoDto {
+public class PaymentResponseInfo {
     @JsonProperty("payment_id")
     @Positive
     private Long paymentId;

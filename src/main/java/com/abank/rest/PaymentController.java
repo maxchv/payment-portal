@@ -1,10 +1,10 @@
 package com.abank.rest;
 
-import com.abank.dto.request.PaymentRequestDto;
-import com.abank.dto.request.PaymentRequestInfoDto;
-import com.abank.dto.response.PaymentResponseDto;
-import com.abank.dto.response.PaymentResponseInfoDto;
-import com.abank.dto.response.PaymentResponseWithStatusDto;
+import com.abank.dto.request.PaymentRequest;
+import com.abank.dto.request.PaymentRequestInfo;
+import com.abank.dto.response.PaymentResponse;
+import com.abank.dto.response.PaymentResponseInfo;
+import com.abank.dto.response.PaymentResponseWithStatus;
 import com.abank.service.AccountNotFoundException;
 import com.abank.service.NotEnoughMoney;
 import com.abank.service.PaymentService;
@@ -33,12 +33,12 @@ public class PaymentController {
     @PostMapping(value = "payment",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<PaymentResponseDto> createPayment(@Validated @RequestBody PaymentRequestDto payment,
-                                                            BindingResult bindingResult) {
+    public ResponseEntity<PaymentResponse> createPayment(@Validated @RequestBody PaymentRequest payment,
+                                                         BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.internalServerError().build();
         }
-        PaymentResponseDto created;
+        PaymentResponse created;
         try {
             created = paymentService.createPayment(payment);
         } catch (AccountNotFoundException | NotEnoughMoney notEnoughMoney) {
@@ -50,21 +50,21 @@ public class PaymentController {
     @PostMapping(value = "payments",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<List<PaymentResponseWithStatusDto>> createPayments(@Validated @RequestBody PaymentRequestDto[] payments) {
-        List<PaymentResponseWithStatusDto> response = paymentService.createPayments(payments);
+    public ResponseEntity<List<PaymentResponseWithStatus>> createPayments(@Validated @RequestBody PaymentRequest[] payments) {
+        List<PaymentResponseWithStatus> response = paymentService.createPayments(payments);
         return ResponseEntity.ok(response);
     }
 
     @PostMapping(value = "payments/info",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<List<PaymentResponseInfoDto>> paymentInfo(@Validated @RequestBody PaymentRequestInfoDto paymentRequestInfo,
-                                                                    BindingResult bindingResult) {
+    public ResponseEntity<List<PaymentResponseInfo>> paymentInfo(@Validated @RequestBody PaymentRequestInfo paymentRequestInfo,
+                                                                 BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.internalServerError().build();
         }
 
-        List<PaymentResponseInfoDto> infos = paymentService.getPaymentInfo(paymentRequestInfo);
+        List<PaymentResponseInfo> infos = paymentService.getPaymentInfo(paymentRequestInfo);
 
         return ResponseEntity.ok(infos);
     }

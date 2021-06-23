@@ -1,18 +1,18 @@
 package com.abank.service.mapping;
 
-import com.abank.dto.response.PaymentResponseInfoDto;
+import com.abank.dto.response.PaymentResponseInfo;
 import com.abank.model.Payment;
 import org.springframework.stereotype.Service;
 
-import static com.abank.dto.response.PaymentResponseInfoDto.ClientFullName;
+import static com.abank.dto.response.PaymentResponseInfo.ClientFullName;
 
 @Service
 public class MappingUtilsImpl implements MappingUtils {
     @Override
-    public PaymentResponseInfoDto paymentEntityToResponseDto(Payment payment) {
+    public PaymentResponseInfo paymentEntityToResponseDto(Payment payment) {
         var payer = payment.getSourceAccount().getClient();
         var recipient = payment.getDestinationAccount().getClient();
-        return PaymentResponseInfoDto
+        return PaymentResponseInfo
                 .builder()
                 .paymentId(payment.getId())
                 .timestamp(payment.getTimestamp())

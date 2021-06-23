@@ -6,22 +6,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 @Getter
-public class PaymentResponseWithStatusDto extends PaymentResponseDto {
+public class PaymentResponseWithStatus extends PaymentResponse {
     @JsonProperty("status")
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private final PaymentStatus status;
 
-    public PaymentResponseWithStatusDto(PaymentResponseDto dto) {
+    public PaymentResponseWithStatus(PaymentResponse dto) {
         this.setPaymentId(dto.getPaymentId());
         this.status = PaymentStatus.ok;
     }
 
-    public PaymentResponseWithStatusDto(Long paymentId) {
-        super(paymentId);
-        this.status = PaymentStatus.ok;
-    }
-
-    public PaymentResponseWithStatusDto(Long paymentId, PaymentStatus status) {
+    public PaymentResponseWithStatus(Long paymentId, PaymentStatus status) {
         super(paymentId);
         this.status = status;
     }
