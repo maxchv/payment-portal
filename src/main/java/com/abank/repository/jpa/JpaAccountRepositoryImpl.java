@@ -33,6 +33,6 @@ public class JpaAccountRepositoryImpl implements AccountRepository {
 
     @Override
     public List<Account> findAll() {
-        return entityManager.createQuery("from Account", Account.class).getResultList();
+        return entityManager.createQuery("select a from Account a", Account.class).getResultList();
     }
 }

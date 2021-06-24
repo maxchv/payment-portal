@@ -22,7 +22,7 @@ public class Account {
     private Long id;
 
     @JsonProperty("account_num")
-    @Column(name = "account_num", columnDefinition = "char(9)", nullable = false, unique = true)
+    @Column(name = "account_num", length = 9, nullable = false, unique = true)
     @NotBlank
     @NotNull
     private String accountNum;

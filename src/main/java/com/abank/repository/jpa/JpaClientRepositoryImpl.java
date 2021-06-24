@@ -34,6 +34,6 @@ public class JpaClientRepositoryImpl implements ClientRepository {
 
     @Override
     public List<Client> findAll() {
-        return entityManager.createQuery("from Client", Client.class).getResultList();
+        return entityManager.createQuery("select c from Client c", Client.class).getResultList();
     }
 }

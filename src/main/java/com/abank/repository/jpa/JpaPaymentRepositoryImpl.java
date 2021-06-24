@@ -81,6 +81,6 @@ public class JpaPaymentRepositoryImpl implements PaymentRepository {
 
     @Override
     public List<Payment> findAll() {
-        return entityManager.createQuery("from Payment", Payment.class).getResultList();
+        return entityManager.createQuery("select p from Payment p", Payment.class).getResultList();
     }
 }

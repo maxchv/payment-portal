@@ -13,7 +13,7 @@ databaseChangeLog:
                   autoIncrement: true
               - column:
                   name: account_num
-                  type: char(9)
+                  type: varchar(9)
                   constraints:
                     nullable: false
                     unique: true

@@ -29,7 +29,6 @@ databaseChangeLog:
               - column:
                   name: timestamp
                   type: timestamp
-                  defaultValue: TIMESTAMP
               - column:
                   name: reason
                   type: varchar(255)
