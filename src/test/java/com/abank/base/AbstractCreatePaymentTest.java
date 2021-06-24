@@ -5,8 +5,8 @@ import com.abank.model.Client;
 import com.abank.model.Payment;
 import com.abank.model.PaymentStatus;
 import com.abank.repository.AccountRepository;
-import com.abank.repository.ClientRepository;
 import com.abank.repository.PaymentRepository;
+import com.abank.service.ClientService;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
@@ -34,7 +34,7 @@ public abstract class AbstractCreatePaymentTest {
     private PaymentRepository paymentRepository;
 
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientService clientService;
 
     @Autowired
     private AccountRepository accountRepository;
@@ -57,7 +57,7 @@ public abstract class AbstractCreatePaymentTest {
 
         client.addAccount(account1);
         client.addAccount(account2);
-        clientRepository.save(client);
+        clientService.createClient(client);
     }
 
     @SneakyThrows

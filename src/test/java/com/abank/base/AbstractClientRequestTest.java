@@ -2,7 +2,7 @@ package com.abank.base;
 
 import com.abank.model.Account;
 import com.abank.model.Client;
-import com.abank.repository.ClientRepository;
+import com.abank.service.ClientService;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
@@ -23,7 +23,7 @@ public abstract class AbstractClientRequestTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientService clientService;
 
     @BeforeEach
     void init() {
@@ -41,7 +41,7 @@ public abstract class AbstractClientRequestTest {
         client.addAccount(account1);
         client.addAccount(account2);
 
-        clientRepository.save(client);
+        clientService.createClient(client);
     }
 
     @SneakyThrows

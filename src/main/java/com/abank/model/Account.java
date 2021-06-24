@@ -36,7 +36,7 @@ public class Account {
     @JsonProperty("balance")
     @Column(name = "balance")
     @Positive
-    private BigDecimal balance; // FIXME: format
+    private BigDecimal balance;
 
     @ManyToOne
     @JoinColumn(name = "client_fk")

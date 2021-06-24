@@ -1,6 +1,6 @@
-package com.abank.jpa;
+package com.abank.jdbc;
 
-import com.abank.base.AbstractClientCreateTest;
+import com.abank.base.AbstractClientRequestTest;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,9 +14,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-@ActiveProfiles(profiles = {"test", "jpa"})
+@ActiveProfiles(profiles = {"test", "jdbc"})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
-public class JpaClientCreateTest extends AbstractClientCreateTest {
+class JdbcClientRequestTest extends AbstractClientRequestTest {
+
 }

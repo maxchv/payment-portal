@@ -58,8 +58,8 @@ public class PaymentServiceImpl implements PaymentService {
             BigDecimal destinationBalance = destination.getBalance();
             source.setBalance(sourceBalance.subtract(payment.getAmount()));
             destination.setBalance(destinationBalance.add(payment.getAmount()));
-            accountRepository.save(source);
-            accountRepository.save(destination);
+            accountRepository.updateBalance(source.getId(), source.getBalance());
+            accountRepository.updateBalance(destination.getId(), destination.getBalance());
             payment.setStatus(PaymentStatus.ok);
             paymentRepository.save(payment);
         } else {
@@ -97,10 +97,10 @@ public class PaymentServiceImpl implements PaymentService {
         sourceAccount.setId(paymentRequest.getSourceAccountId());
 
         Account destinationAccount = new Account();
-        Client recepient = new Client();
-        recepient.setId(paymentRequest.getRecipientId());
+        Client recipient = new Client();
+        recipient.setId(paymentRequest.getRecipientId());
         destinationAccount.setId(paymentRequest.getDestinationAccountId());
-        destinationAccount.setClient(recepient);
+        destinationAccount.setClient(recipient);
 
         payment.setSourceAccount(sourceAccount);
         payment.setDestinationAccount(destinationAccount);

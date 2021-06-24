@@ -34,7 +34,7 @@ public class Client {
     private String lastName;
 
     @JsonProperty("accounts")
-    @OneToMany(mappedBy = "client", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "client")
     private List<Account> accounts;
 
     public void addAccount(Account account) {

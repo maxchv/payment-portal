@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,5 +35,14 @@ public class JpaAccountRepositoryImpl implements AccountRepository {
     @Override
     public List<Account> findAll() {
         return entityManager.createQuery("select a from Account a", Account.class).getResultList();
+    }
+
+
+    @Transactional
+    @Override
+    public void updateBalance(Long id, BigDecimal newBalance) {
+        Account account = entityManager.find(Account.class, id);
+        account.setBalance(newBalance);
+        entityManager.merge(account);
     }
 }
