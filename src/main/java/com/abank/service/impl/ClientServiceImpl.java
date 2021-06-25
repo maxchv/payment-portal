@@ -1,10 +1,12 @@
-package com.abank.service;
+package com.abank.service.impl;
 
 import com.abank.dto.response.ClientResponse;
 import com.abank.model.Account;
 import com.abank.model.Client;
 import com.abank.repository.AccountRepository;
 import com.abank.repository.ClientRepository;
+import com.abank.service.ClientNotFoundException;
+import com.abank.service.ClientService;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

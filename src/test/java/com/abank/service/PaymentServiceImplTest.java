@@ -9,6 +9,7 @@ import com.abank.model.Payment;
 import com.abank.model.PaymentStatus;
 import com.abank.repository.AccountRepository;
 import com.abank.repository.PaymentRepository;
+import com.abank.service.impl.PaymentServiceImpl;
 import com.abank.service.mapping.MappingUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
