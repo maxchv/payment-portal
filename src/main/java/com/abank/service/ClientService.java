@@ -10,4 +10,6 @@ public interface ClientService {
     List<Account> findAccountByClientId(Long id) throws ClientNotFoundException;
 
     ClientResponse createClient(Client client);
+
+    List<Client> getAllClients();
 }

@@ -51,7 +51,7 @@ public abstract class AbstractClientRequestTest {
     void findClient() {
         mockMvc
                 .perform(
-                        get("/api/v1/clients")
+                        get("/api/v1/clients/accounts")
                                 .queryParam("client_id", String.valueOf(1))
                                 .contentType(MediaType.APPLICATION_JSON)
                 )

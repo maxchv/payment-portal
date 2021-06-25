@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(methods = {RequestMethod.GET, RequestMethod.POST})
 @RestController
 @RequestMapping(path = "/api/v1/clients")
 public class ClientController {
@@ -23,8 +24,10 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<List<Account>> getClientById(@RequestParam(name = "client_id") Long clientId) {
+    @GetMapping(value = "/accounts",
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<List<Account>> getAccountsByClientId(@RequestParam(name = "client_id") Long clientId) {
         List<Account> accounts;
         try {
             accounts = clientService.findAccountByClientId(clientId);
@@ -33,6 +36,13 @@ public class ClientController {
         }
         return ResponseEntity.ok(accounts);
     }
+
+    @GetMapping(value = "",
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<List<Client>> getAllClients() {
+        return ResponseEntity.ok(clientService.getAllClients());
+    }
+
 
     @PostMapping(value = "", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<ClientResponse> createClient(@Validated @RequestBody Client client, BindingResult bindingResult) {

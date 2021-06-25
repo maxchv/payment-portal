@@ -1,6 +1,5 @@
 package com.abank.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
@@ -15,7 +14,7 @@ import java.util.List;
 @Entity
 @Data
 public class Client {
-    @JsonIgnore
+    @JsonProperty("client_id")
     @Column(name = "client_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
