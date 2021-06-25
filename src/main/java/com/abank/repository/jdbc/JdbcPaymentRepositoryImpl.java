@@ -12,8 +12,8 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +22,8 @@ import java.util.Optional;
 @Profile("jdbc")
 public class JdbcPaymentRepositoryImpl implements PaymentRepository {
 
+    public static final String SELECT_BY_ID = "SELECT payment_id, source_acc_id, dest_acc_id, amount, timestamp, reason, status FROM payments WHERE payment_id=?";
+    public static final String SELECT_ALL = "SELECT payment_id, source_acc_id, dest_acc_id, amount, timestamp, reason, status FROM payments";
     private final JdbcTemplate jdbcTemplate;
     private final SimpleJdbcInsert jdbcInsert;
     private final RowMapper<Payment> rowMapper = (resultSet, i) -> {
@@ -37,8 +39,7 @@ public class JdbcPaymentRepositoryImpl implements PaymentRepository {
         payment.setDestinationAccount(destination);
 
         payment.setAmount(resultSet.getBigDecimal("amount"));
-        payment.setTimestamp(LocalDateTime.parse(resultSet.getString("timestamp"),
-                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS")));
+        payment.setTimestamp(Timestamp.valueOf(resultSet.getString("timestamp")).toLocalDateTime());
         payment.setReason(resultSet.getString("reason"));
         payment.setStatus(PaymentStatus.valueOf(resultSet.getString("status")));
 
@@ -104,15 +105,11 @@ public class JdbcPaymentRepositoryImpl implements PaymentRepository {
 
     @Override
     public Optional<Payment> findById(Long id) {
-        return Optional.ofNullable(
-                jdbcTemplate.queryForObject(
-                        "SELECT payment_id, source_acc_id, dest_acc_id, amount, timestamp, reason, status WHERE payment_id=?",
-                        rowMapper, id)
-        );
+        return Optional.ofNullable(jdbcTemplate.queryForObject(SELECT_BY_ID, rowMapper, id));
     }
 
     @Override
     public List<Payment> findAll() {
-        return jdbcTemplate.query("SELECT payment_id, source_acc_id, dest_acc_id, amount, timestamp, reason, status", rowMapper);
+        return jdbcTemplate.query(SELECT_ALL, rowMapper);
     }
 }

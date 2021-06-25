@@ -72,7 +72,6 @@ public class JdbcAccountRepositoryImpl implements AccountRepository {
 
     @Override
     public void updateBalance(Long id, BigDecimal newBalance) {
-        jdbcTemplate.update("UPDATE accounts set balance=? WHERE account_id=?",
-                id, newBalance);
+        jdbcTemplate.update("UPDATE accounts set balance=? WHERE account_id=?", newBalance, id);
     }
 }

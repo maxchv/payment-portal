@@ -112,12 +112,12 @@ public abstract class AbstractCreatePaymentTest {
         Optional<Account> source = accountRepository.findById(1L);
         assertTrue(source.isPresent());
         Account sourceAccount = source.get();
-        assertEquals(sourceAccount.getBalance(), new BigDecimal("4900.00"));
+        assertEquals(new BigDecimal("4900.00"), sourceAccount.getBalance());
 
         Optional<Account> destination = accountRepository.findById(2L);
         assertTrue(destination.isPresent());
         Account destinationAccount = destination.get();
-        assertEquals(destinationAccount.getBalance(), new BigDecimal("10100.00"));
+        assertEquals(new BigDecimal("10100.00"), destinationAccount.getBalance());
     }
 
     @SneakyThrows
@@ -252,12 +252,12 @@ public abstract class AbstractCreatePaymentTest {
         Optional<Account> source = accountRepository.findById(1L);
         assertTrue(source.isPresent());
         Account sourceAccount = source.get();
-        assertEquals(sourceAccount.getBalance(), new BigDecimal("5900.00"));
+        assertEquals(new BigDecimal("5900.00"), sourceAccount.getBalance());
 
         Optional<Account> destination = accountRepository.findById(2L);
         assertTrue(destination.isPresent());
         Account destinationAccount = destination.get();
-        assertEquals(destinationAccount.getBalance(), new BigDecimal("9100.00"));
+        assertEquals(new BigDecimal("9100.00"), destinationAccount.getBalance());
     }
 
     @SneakyThrows
@@ -335,11 +335,11 @@ public abstract class AbstractCreatePaymentTest {
 
         Optional<Account> firstAccountOptional = accountRepository.findById(1L);
         assertTrue(firstAccountOptional.isPresent());
-        assertEquals(firstAccountOptional.get().getBalance(), new BigDecimal("4900.00"));
+        assertEquals(new BigDecimal("4900.00"), firstAccountOptional.get().getBalance());
 
         Optional<Account> secondAccountOptional = accountRepository.findById(2L);
         assertTrue(secondAccountOptional.isPresent());
-        assertEquals(secondAccountOptional.get().getBalance(), new BigDecimal("10100.00"));
+        assertEquals(new BigDecimal("10100.00"), secondAccountOptional.get().getBalance());
     }
 
 }

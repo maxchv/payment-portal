@@ -52,7 +52,7 @@ Content-Type: application/json
   {
     "source_acc_id": 2,
     "dest_acc_id": 1,
-    "amount": 1000.00,
+    "amount": 100000.00,
     "reason": "назначение платежа"
   }
 ]
