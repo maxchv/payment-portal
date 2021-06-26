@@ -5,7 +5,7 @@ import Form from "react-jsonschema-form";
 const base_url = process.env.REACT_APP_API_BASE_URL || "http://localhost:8080/api/v1";
 const url = base_url + "/clients";
 
-export default class Clients extends Admin {
+export default class Payments extends Admin {
 
     constructor() {
         super();

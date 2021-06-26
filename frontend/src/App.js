@@ -1,5 +1,6 @@
 import "./main.css";
 import Clients from "./Clients";
+import Payments from "./Payments";
 import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 
 import {Jumbotron, Nav, Navbar, NavItem} from "react-bootstrap";
@@ -58,6 +59,7 @@ function App() {
                     <Route path="/payments">
                         <>
                             <h2>Payments</h2>
+                            <Payments/>
                         </>
                     </Route>
                     <Route path="/api">
