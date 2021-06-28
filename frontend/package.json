@@ -8,13 +8,12 @@
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^3.4.1",
     "react": "^17.0.2",
-    "react-crud-admin": "^1.0.48",
-    "react-crud-table": "^0.3.1",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1",
     "react-router-dom": "^5.2.0",
-    "react-bootstrap": "v0.33.1"
+    "react-admin": "^3.16.4",
+    "prop-types": "^15.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
