@@ -5,6 +5,7 @@ import com.abank.dto.request.PaymentRequestInfo;
 import com.abank.dto.response.PaymentResponse;
 import com.abank.dto.response.PaymentResponseInfo;
 import com.abank.dto.response.PaymentResponseWithStatus;
+import com.abank.model.Payment;
 import com.abank.service.AccountNotFoundException;
 import com.abank.service.NotEnoughMoney;
 import com.abank.service.PaymentService;
@@ -13,13 +14,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping(path = "/api/v1")
 public class PaymentController {
@@ -30,7 +29,7 @@ public class PaymentController {
         this.paymentService = paymentService;
     }
 
-    @PostMapping(value = "payment",
+    @PostMapping(value = "/payment",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<PaymentResponse> createPayment(@Validated @RequestBody PaymentRequest payment,
@@ -47,7 +46,13 @@ public class PaymentController {
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
-    @PostMapping(value = "payments",
+    @GetMapping(value = "/payments",
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<List<Payment>> getPayments() {
+        return ResponseEntity.ok(paymentService.findAll());
+    }
+
+    @PostMapping(value = "/payments",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<PaymentResponseWithStatus>> createPayments(@Validated @RequestBody PaymentRequest[] payments) {
@@ -55,7 +60,7 @@ public class PaymentController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping(value = "payments/info",
+    @PostMapping(value = "/payments/info",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<PaymentResponseInfo>> paymentInfo(@Validated @RequestBody PaymentRequestInfo paymentRequestInfo,

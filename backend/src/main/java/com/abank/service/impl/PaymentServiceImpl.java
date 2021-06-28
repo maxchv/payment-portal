@@ -114,4 +114,9 @@ public class PaymentServiceImpl implements PaymentService {
                 .map(mappingUtils::paymentEntityToResponseDto)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<Payment> findAll() {
+        return paymentRepository.findAll();
+    }
 }

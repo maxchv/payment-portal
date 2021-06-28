@@ -5,6 +5,7 @@ import com.abank.dto.request.PaymentRequestInfo;
 import com.abank.dto.response.PaymentResponse;
 import com.abank.dto.response.PaymentResponseInfo;
 import com.abank.dto.response.PaymentResponseWithStatus;
+import com.abank.model.Payment;
 
 import java.util.List;
 
@@ -14,4 +15,6 @@ public interface PaymentService {
     List<PaymentResponseWithStatus> createPayments(PaymentRequest[] payments);
 
     List<PaymentResponseInfo> getPaymentInfo(PaymentRequestInfo paymentRequest);
+
+    List<Payment> findAll();
 }
