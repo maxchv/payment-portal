@@ -72,4 +72,101 @@ public abstract class AbstractClientCreateTest {
         assertEquals("card/simple", accounts.get(1).getAccountType());
         assertEquals(BigDecimal.valueOf(10000.00).stripTrailingZeros(), accounts.get(1).getBalance().stripTrailingZeros());
     }
+
+    @SneakyThrows
+    @Test
+    @Order(2)
+    void createClientInvalidFirstName() {
+        var request = "{\n" +
+                //"  \"first_name\": \"Имя\",\n" +
+                "  \"last_name\": \"Фамилия\",\n" +
+                "  \"accounts\": [\n" +
+                "    {\n" +
+                "      \"account_num\": \"123456789\",\n" +
+                "      \"account_type\": \"card/simple\",\n" +
+                "      \"balance\": 5000.00\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"account_num\": \"987654321\",\n" +
+                "      \"account_type\": \"card/simple\",\n" +
+                "      \"balance\": 10000.00\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        mockMvc
+                .perform(post("/api/v1/clients")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(request))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$[0].code").exists())
+                .andExpect(jsonPath("$[0].code").value("firstName"))
+                .andExpect(jsonPath("$[0].text").exists());
+    }
+
+    @SneakyThrows
+    @Test
+    @Order(3)
+    void createClientInvalidLastName() {
+        var request = "{\n" +
+                "  \"first_name\": \"Имя\",\n" +
+//                "  \"last_name\": \"Фамилия\",\n" +
+                "  \"accounts\": [\n" +
+                "    {\n" +
+                "      \"account_num\": \"123456789\",\n" +
+                "      \"account_type\": \"card/simple\",\n" +
+                "      \"balance\": 5000.00\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"account_num\": \"987654321\",\n" +
+                "      \"account_type\": \"card/simple\",\n" +
+                "      \"balance\": 10000.00\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        mockMvc
+                .perform(post("/api/v1/clients")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(request))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$[0].code").exists())
+                .andExpect(jsonPath("$[0].code").value("lastName"))
+                .andExpect(jsonPath("$[0].text").exists());
+    }
+
+    @SneakyThrows
+    @Test
+    @Order(4)
+    void createClientInvalidAccounts() {
+        var request = "{\n" +
+                "  \"first_name\": \"Имя\",\n" +
+                "  \"last_name\": \"Фамилия\"" +
+//                ",\n" +
+//                "  \"accounts\": [\n" +
+//                "    {\n" +
+//                "      \"account_num\": \"123456789\",\n" +
+//                "      \"account_type\": \"card/simple\",\n" +
+//                "      \"balance\": 5000.00\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"account_num\": \"987654321\",\n" +
+//                "      \"account_type\": \"card/simple\",\n" +
+//                "      \"balance\": 10000.00\n" +
+//                "    }\n" +
+//                "  ]\n" +
+                "}";
+        mockMvc
+                .perform(post("/api/v1/clients")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(request))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$[0].code").exists())
+                .andExpect(jsonPath("$[0].code").value("accounts"))
+                .andExpect(jsonPath("$[0].text").exists());
+    }
 }

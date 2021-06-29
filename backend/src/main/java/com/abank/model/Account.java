@@ -16,8 +16,9 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "accounts")
 public class Account {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty("account_id")
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account_id")
     private Long id;
 
@@ -36,6 +37,7 @@ public class Account {
     @JsonProperty("balance")
     @Column(name = "balance")
     @Positive
+    @NotNull
     private BigDecimal balance;
 
     @ManyToOne

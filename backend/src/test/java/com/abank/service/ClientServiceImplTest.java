@@ -4,6 +4,7 @@ import com.abank.model.Account;
 import com.abank.model.Client;
 import com.abank.repository.AccountRepository;
 import com.abank.repository.ClientRepository;
+import com.abank.service.error.ClientNotFoundException;
 import com.abank.service.impl.ClientServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

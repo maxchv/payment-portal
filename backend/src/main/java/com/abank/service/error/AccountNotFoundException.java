@@ -1,4 +1,4 @@
-package com.abank.service;
+package com.abank.service.error;
 
 public class AccountNotFoundException extends Exception {
     public AccountNotFoundException() {

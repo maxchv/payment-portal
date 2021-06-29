@@ -3,6 +3,7 @@ package com.abank.service;
 import com.abank.dto.response.ClientResponse;
 import com.abank.model.Account;
 import com.abank.model.Client;
+import com.abank.service.error.ClientNotFoundException;
 
 import java.util.List;
 import java.util.Optional;

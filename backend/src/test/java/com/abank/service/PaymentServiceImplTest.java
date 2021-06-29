@@ -9,6 +9,8 @@ import com.abank.model.Payment;
 import com.abank.model.PaymentStatus;
 import com.abank.repository.AccountRepository;
 import com.abank.repository.PaymentRepository;
+import com.abank.service.error.AccountNotFoundException;
+import com.abank.service.error.NotEnoughMoney;
 import com.abank.service.impl.PaymentServiceImpl;
 import com.abank.service.mapping.MappingUtils;
 import org.junit.jupiter.api.Test;

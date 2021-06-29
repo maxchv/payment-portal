@@ -71,3 +71,23 @@ Content-Type: application/json
   "source_acc_id": 1,
   "dest_acc_id": 2
 }
+
+### 4. Ошибка валидации данных
+POST localhost:8080/api/v1/clients
+Content-Type: application/json
+
+{
+  "first_name": "Имя",
+  "last_name": "Фамилия",
+  "accounts": [
+    {
+      "account_type": "card/simple",
+      "balance": 5000.00
+    },
+    {
+      "account_num": "111111111",
+      "account_type": "card/simple",
+      "balance": 10000.00
+    }
+  ]
+}

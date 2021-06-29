@@ -14,25 +14,26 @@ import java.util.List;
 @Entity
 @Data
 public class Client {
+    @Id
     @JsonProperty("client_id")
     @Column(name = "client_id")
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonProperty("first_name")
     @NotNull
     @NotBlank
+    @JsonProperty("first_name")
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @JsonProperty("last_name")
     @NotNull
     @NotBlank
+    @JsonProperty("last_name")
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
     @JsonProperty("accounts")
+    @NotNull
     @OneToMany(mappedBy = "client")
     private List<Account> accounts;
 

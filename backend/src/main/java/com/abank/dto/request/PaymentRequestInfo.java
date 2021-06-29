@@ -7,19 +7,19 @@ import javax.validation.constraints.Positive;
 
 @Data
 public class PaymentRequestInfo {
-    @JsonProperty("payer_id")
+    @JsonProperty(value = "payer_id", required = true)
     @Positive
     private Long payerId;
 
-    @JsonProperty("recipient_id")
+    @JsonProperty(value = "recipient_id", required = true)
     @Positive
     private Long recipientId;
 
-    @JsonProperty("source_acc_id")
+    @JsonProperty(value = "source_acc_id", required = true)
     @Positive
     private Long sourceAccountId;
 
-    @JsonProperty("dest_acc_id")
+    @JsonProperty(value = "dest_acc_id", required = true)
     @Positive
     private Long destinationAccountId;
 }
