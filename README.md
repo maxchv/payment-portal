@@ -4,12 +4,12 @@
 
 На фронте используется React с применением библиотеки [react-admin](https://marmelab.com/react-admin)
 
-На бэке я не реализовал все юнит тесты, но есть необходимые интеграционные.
+На бэке я реализовал не все юнит тесты, но есть необходимые интеграционные.
 
 Запускается все черед докер. Для этого необходимо склонировать проект, в файле [docker-compose.yaml](docker-compose.yaml)
 на 32 строке указать корректный ip адрес контейнера, на котором поднимается бэкенд для доступа с клиента.
 
-После чего запусить через `docker-compose`:
+После чего запустить через `docker-compose`:
 
 ```shell
 docker-compose up
@@ -21,7 +21,7 @@ docker-compose up
 
 Для останова выполнить команду:
 ```shell
-docker-compose up
+docker-compose down
 ```
 
 [![demo](screenshots/demo.gif)](https://youtu.be/Ori6EDTblGA)
