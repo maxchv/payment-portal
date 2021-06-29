@@ -70,11 +70,11 @@ public class ClientServiceImplTest {
     @Test
     public void testFindAccountByNotFoundClient() {
         // Arrange
-        when(this.clientRepository.findById(any())).thenReturn(Optional.<Client>empty());
+        when(this.clientRepository.findById(any())).thenReturn(Optional.empty());
 
         // Act and Assert
         assertThrows(ClientNotFoundException.class, () -> this.clientServiceImpl.findAccountByClientId(123L));
-        verify(this.clientRepository).findById((Long) any());
+        verify(this.clientRepository).findById(any());
     }
 
     @Test
