@@ -14,14 +14,33 @@ services:
       - "8080:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
     restart: always
     depends_on:
+      - monitoring
       - db # This service depends on mysql. Start that first.
     environment: # Pass environment variables to the service
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_BOOT_ADMIN_CLIENT_URL: http://monitoring:8093
+      SPRING_BOOT_ADMIN_CLIENT_USERNAME: admin
+      SPRING_BOOT_ADMIN_CLIENT_PASSWORD: admin
     networks: # Networks to join (Services on the same network can communicate with each other using their name)
       - backend
       - frontend
+      - monitoring
+
+  monitoring:
+    # Configuration for building the docker image for the backend service
+    build:
+      context: monitoring # Use an image built from the specified dockerfile in the `polling-app-server` directory.
+      dockerfile: Dockerfile
+    ports:
+      - "8093:8093"
+    restart: always
+    environment: # Pass environment variables to the service
+      SPRING_SECURITY_USER_NAME: admin
+      SPRING_SECURITY_USER_PASSWORD: admin
+    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+      - monitoring
 
   # Frontend Service
   app-client:
@@ -60,3 +79,4 @@ volumes:
 networks:
   backend:
   frontend:
+  monitoring:
