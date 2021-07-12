@@ -41,4 +41,7 @@ public class Payment {
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private PaymentStatus status;
+
+    @Version
+    private Long version;
 }

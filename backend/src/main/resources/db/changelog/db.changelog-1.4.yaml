@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-column-version-to-payments
+      author: Max
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: version
+                  type: bigint
+            tableName: payments
+  - changeSet:
+      id: add-column-version-to-accounts
+      author: Max
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: version
+                  type: bigint
+            tableName: accounts

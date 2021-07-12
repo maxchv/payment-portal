@@ -44,4 +44,8 @@ public class Account {
     @JoinColumn(name = "client_fk")
     @JsonIgnore
     private Client client;
+
+    @Version
+    @JsonIgnore
+    private Long version;
 }
